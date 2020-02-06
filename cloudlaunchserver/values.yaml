@@ -27,6 +27,16 @@ fernet_keys: []
 
 # Extra environment variables to pass to container
 extra_env: []
+# extra_env:
+#   - name: OIDC_CLIENT_ID
+#     value: "cloudman"
+#   - name: OIDC_PUBLIC_URI
+#     value: "{{.Values.ingress.protocol}}://{{.Values.global.domain | default (index .Values.ingress.hosts 0)}}/cloudman"
+#   - name: SOME_PASSWORD
+#     valueFrom:
+#       secretKeyRef:
+#         name: "{{ .Release.Name }}-service-password"
+#         key: password
 
 extra_init_scripts: {}
 # extra_init_scripts:
@@ -58,28 +68,28 @@ service:
 ingress:
   enabled: false
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  #   kubernetes.io/ingress.class: nginx
+  #   kubernetes.io/tls-acme: "true"
   path: /
   hosts:
     - ~
   protocol: https
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+#    - secretName: chart-example-tls
+#      hosts:
+#        - chart-example.local
 
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
+#   We usually recommend not to specify default resources and to leave this as a conscious
+#   choice for the user. This also increases chances charts run on environments with little
+#   resources, such as Minikube. If you do want to specify resources, uncomment the following
+#   lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+#   limits:
+#    cpu: 100m
+#    memory: 128Mi
+#   requests:
+#    cpu: 100m
+#    memory: 128Mi
 
 nodeSelector: {}
 
@@ -89,8 +99,8 @@ affinity: {}
 
 rabbitmq:
   rabbitmqUsername: notAGuest
-  # Will autogenerate if not set
-  # rabbitmqPassword: aRandomPassword
+#   Will autogenerate if not set
+#   rabbitmqPassword: aRandomPassword
   rabbitmqErlangCookie: mustRemainSameBetweenUpgrades
   replicaCount: 1
 
@@ -98,11 +108,11 @@ postgresql:
   enabled: true
   postgresqlDatabase: cloudlaunch
   postgresqlUsername: cloudlaunch
-  # Password will be auto-generated if not specified, then stored in a secret
-  # postgresqlPassword: some_pass
-  # The postgres superuser password will not be set if not specified. If you need a postgres superuser,
-  # this should be set at launch (eg: for access to manually modify databases on the running server)
-  # postgresqlPostgresPassword: admin_pass
+#   Password will be auto-generated if not specified, then stored in a secret
+#   postgresqlPassword: some_pass
+#   The postgres superuser password will not be set if not specified. If you need a postgres superuser,
+#   this should be set at launch (eg: for access to manually modify databases on the running server)
+#   postgresqlPostgresPassword: admin_pass
   persistence:
     accessMode: ReadWriteMany
 
