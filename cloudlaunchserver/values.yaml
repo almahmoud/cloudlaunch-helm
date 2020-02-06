@@ -26,7 +26,7 @@ secret_key:
 fernet_keys: []
 
 # Extra environment variables to pass to container
-extra_env: {}
+extra_env: []
 
 extra_init_scripts: {}
 # extra_init_scripts:

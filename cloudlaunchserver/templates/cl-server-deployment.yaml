@@ -45,11 +45,9 @@ spec:
             - name: CURL_CA_BUNDLE
               value: ""
           {{- include "cloudlaunchserver.envvars" . }}
-{{- range $key, $val := .Values.extra_env }}
-{{- if $val }}
-            - name: {{ $key | upper }}
-              value: "{{ tpl $val $ }}"
-{{- end }}
+{{- if .Values.extra_env }}
+{{- $nowhitespace := (regexReplaceAll "{{\\s*([^}\\n]+)\\n?([^}\\n]+)?\\n?([^}\\n]+)?\\n?([^}\\n]+)?\\n?([^}\\n]+)?\\s*}}" (toYaml .Values.extra_env) "{{$1 $2 $3 $4 $5}}") -}}
+{{- tpl $nowhitespace . | nindent 12 -}}
 {{- end }}
           volumeMounts:
             - name: initial-data
@@ -139,11 +137,9 @@ spec:
             - name: HELMSMAN_AUTO_DEPLOY
               value: "true"
           {{- include "cloudlaunchserver.envvars" . }}
-{{- range $key, $val := .Values.extra_env }}
-{{- if $val }}
-            - name: {{ $key | upper }}
-              value: "{{ tpl $val $ }}"
-{{- end }}
+{{- if .Values.extra_env }}
+{{- $nowhitespace := (regexReplaceAll "{{\\s*([^}\\n]+)\\n?([^}\\n]+)?\\n?([^}\\n]+)?\\n?([^}\\n]+)?\\n?([^}\\n]+)?\\s*}}" (toYaml .Values.extra_env) "{{$1 $2 $3 $4 $5}}") -}}
+{{- tpl $nowhitespace . | nindent 12 -}}
 {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
