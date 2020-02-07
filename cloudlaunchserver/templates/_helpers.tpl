@@ -7,6 +7,16 @@ Expand the name of the chart.
 {{- end -}}
 
 {{/*
+Remove newlines inserted by toYaml from within templating brackets
+*/}}
+{{- define "cloudlaunchserver.cleanExtraEnvs" -}}
+{{- if .Values.extra_env }}
+{{- $nowhitespace := (regexReplaceAll "{{\\s*([^}\\n]+)\\n?([^}\\n]+)?\\n?([^}\\n]+)?\\n?([^}\\n]+)?\\n?([^}\\n]+)?\\s*}}" (toYaml .Values.extra_env) "{{$1 $2 $3 $4 $5}}") -}}
+{{- tpl $nowhitespace . | nindent 12 -}}
+{{- end }}
+{{- end -}}
+
+{{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.

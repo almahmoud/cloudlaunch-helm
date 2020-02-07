@@ -29,9 +29,7 @@ fernet_keys: []
 extra_env: []
 # extra_env:
 #   - name: OIDC_CLIENT_ID
-#     value: "cloudman"
-#   - name: OIDC_PUBLIC_URI
-#     value: "{{.Values.ingress.protocol}}://{{.Values.global.domain | default (index .Values.ingress.hosts 0)}}/cloudman"
+#     value: "{{.Release.Name}}-cloudman"
 #   - name: SOME_PASSWORD
 #     valueFrom:
 #       secretKeyRef:
