@@ -6,7 +6,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-ui
   labels:
     app: {{ template "cloudlaunch.name" . }}
     chart: {{ template "cloudlaunch.chart" . }}
