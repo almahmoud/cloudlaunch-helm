@@ -12,6 +12,7 @@ initial_data:
   - 1_clouds.json: true
   - 2_appliances.json: true
 
+
 nameOverride: cloudlaunch
 env_prefix: CLOUDLAUNCH
 celery_app_name: cloudlaunchserver
