@@ -18,7 +18,23 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install bump2version pyyaml
-      - name: Bump version if necessary
+      - name: Bump version if necessary for cloudlaunchserver
+        run: sh -c 'sh ./.github/scripts/bump.sh'
+        shell: bash
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+          GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_BRANCH: ${{ github.event.pull_request.base.ref }}
+          CHART_NAME: cloudlaunchserver
+      - name: Package and push to helm-charts for cloudlaunchserver
+        run: sh ./.github/scripts/package.sh
+        shell: bash
+        env:
+          CHARTS_REPO: cloudve/helm-charts
+          GIT_TOKEN: ${{ secrets.CHARTS_TOKEN }}
+          CHART_NAME: cloudlaunchserver
+          CHARTS_BRANCH: ${{ github.event.pull_request.base.ref }}
+      - name: Bump version if necessary for cloudlaunch
         run: sh -c 'sh ./.github/scripts/bump.sh'
         shell: bash
         env:
@@ -26,7 +42,7 @@ jobs:
           GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_BRANCH: ${{ github.event.pull_request.base.ref }}
           CHART_NAME: cloudlaunch
-      - name: Package and push to helm-charts
+      - name: Package and push to helm-charts for cloudlaunch
         run: sh ./.github/scripts/package.sh
         shell: bash
         env:
