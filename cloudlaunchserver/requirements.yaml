@@ -1,7 +1,7 @@
 dependencies:
     - name: postgresql
-      repository: https://kubernetes-charts.storage.googleapis.com/
-      version: 8.3.0
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.8.7
     - name: rabbitmq-ha
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 1.38.2
