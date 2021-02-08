@@ -48,13 +48,14 @@ spec:
             exec:
               command: ["bash",
                         "-c",
-                        "/app/venv/bin/celery -A {{ .Values.celery_app_name | default "cloudlaunchserver" }} inspect ping -d celery@$HOSTNAME"]
+                        '/app/venv/bin/celery -A {{ .Values.celery_app_name | default "cloudlaunchserver" }} inspect ping -d celery@$HOSTNAME']
             timeoutSeconds: 10
           livenessProbe:
             exec:
               command: ["bash",
                         "-c",
-                        "/app/venv/bin/celery -A {{ .Values.celery_app_name | default "cloudlaunchserver" }} inspect ping -d celery@$HOSTNAME"]
+                        '/app/venv/bin/celery -A {{ .Values.celery_app_name | default "cloudlaunchserver" }} inspect ping -d celery@$HOSTNAME']
+            timeoutSeconds: 10
           ports:
             - name: http
               containerPort: 8000
