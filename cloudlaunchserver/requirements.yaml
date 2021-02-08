@@ -3,6 +3,6 @@ dependencies:
       repository: https://charts.bitnami.com/bitnami
       version: 9.8.7
     - name: rabbitmq-ha
-      repository: https://kubernetes-charts.storage.googleapis.com/
+      repository: https://charts.helm.sh/stable
       version: 1.38.2
       alias: rabbitmq
