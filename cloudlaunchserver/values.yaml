@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: cloudve/cloudlaunch-server
-  tag: latest
+  tag: test
   pullPolicy: IfNotPresent
 
 # What initial data to import through django loaddata on startup.
